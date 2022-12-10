@@ -1,3 +1,9 @@
+:root {
+    --background: rgb(29, 32, 43);
+    --background-border: rgb(32, 178, 170);
+    --box-shadow: rgba(32, 178, 170, .13);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,13 +11,14 @@
 }
 
 body {
-    background: #1D202B;
+    background: var(--background);
 }
 
 h1 {
+    margin-top: 25px;
     text-align: center;
-    margin: 10px 0; 
     color: #ddd;
+
     text-transform: uppercase;
 }
 
@@ -27,7 +34,7 @@ main {
 article {
     color: #ddd;
     padding: 15px;
-    border: 1px solid #fff;
+    border: 1px solid var(--background-border);
     border-radius: 20px 5px;
 }
 
@@ -40,46 +47,122 @@ article {
     width: 100%;
 }
 
-.paginacion {
-    position: fixed;
-	bottom: 0;
-	background: #100a1f;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	padding: 10px;
+
+
+.container-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--background);
+    border-top: solid 1px var(--background-border);
+    padding: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.pagination ul{
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 1px 10px 1px var(--box-shadow);
+
+    padding: 7px;
+    border-radius: 50px;
+}
+
+.pagination ul li{
+    color: var(--background-border);
+    list-style: none;
+    line-height: 45px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: background .3s ease, color .3s ease;
+}
+
+.pagination ul li.numb{
+    list-style: none;
+    height: 45px;
+    width: 45px;
+    margin: 0 3px;
+    line-height: 45px;
+    border-radius: 50%;
+}
+
+.pagination ul li.btn-prev, .btn-next{
+    padding: 0 24px;
+    border-radius: 50px;
+}
+
+.pagination li.active {
+    color: #fff !important;
+    background: var(--background-border) !important; 
+}
+
+.pagination ul li:hover {
+    color: rgb(43, 43, 43);
+    background: rgba(131, 222, 255, 0.65);
+
 }
 
 
 
-.paginacion button {
-	cursor: pointer;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	height: 50px;
-	width: 200px;
-	background: #241744;
-	color: #fff;
-    /* color: rgb(255, 152, 0); */
-
-	border-radius: 100px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 600;
-	transition: .3s ease all;
-}
-
-.paginacion button:hover {
-	background: #137c32;
-}
 
 
 @media screen and (max-width: 640px) {
     main {
         grid-template-columns: repeat(auto-fill, 140px);
 
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .container-pagination {
+        padding: 15px 0;
+    }
+
+    .pagination ul li.btn-prev, .btn-next{
+        padding: 0 15px; 
+        border-radius: 30px;
+    }
+
+    .pagination ul li:nth-child(4){
+        display: none;
+    }
+}
+
+@media screen and (max-width: 441px) {
+    .pagination ul li.numb{
+        margin: 0 2px;
+    }
+
+    .pagination ul li:nth-child(6){
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 372px) {
+    .pagination {
+        width: 100%;
+    }
+
+    .pagination ul li.numb{
+        border-radius: 27%;
+    }
+}
+
+@media screen and (max-width: 322px) {
+    .pagination ul li{
+        line-height: 40px;
+    }
+
+    .pagination ul li.numb{
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        border-radius: 50%;
     }
 }
